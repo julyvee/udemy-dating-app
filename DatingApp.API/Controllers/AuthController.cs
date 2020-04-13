@@ -48,6 +48,8 @@ namespace DatingApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
+            throw new Exception("Computer says no!");
+
             var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
             if (userFromRepo == null)
@@ -64,7 +66,8 @@ namespace DatingApp.API.Controllers
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-            var tokenDescriptor = new SecurityTokenDescriptor{
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(1),
                 SigningCredentials = creds
@@ -75,7 +78,8 @@ namespace DatingApp.API.Controllers
             var jwToken = tokenHandler.CreateToken(tokenDescriptor);
             var compactToken = tokenHandler.WriteToken(jwToken);
 
-            return Ok(new TokenDto{
+            return Ok(new TokenDto
+            {
                 Token = compactToken
             });
         }
