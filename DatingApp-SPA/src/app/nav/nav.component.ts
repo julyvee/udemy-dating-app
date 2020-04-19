@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
-import { UserForLogin } from 'src/models/userForLogin';
+import { UserForLogin } from 'src/app/_models/userForLogin';
 import { AlertifyService } from '../_services/alertify.service';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-  model: UserForLogin = new UserForLogin();
+  model: UserForLogin = {
+    username: '',
+    password: '',
+  };
 
   constructor(
     public authService: AuthService,

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { UserForRegister } from 'src/models/userForRegister';
+import { UserForRegister } from 'src/app/_models/userForRegister';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
 
@@ -9,7 +9,10 @@ import { AlertifyService } from '../_services/alertify.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  model: UserForRegister = new UserForRegister();
+  model: UserForRegister = {
+    username: '',
+    password: '',
+  };
 
   @Output()
   cancelRegister = new EventEmitter();
